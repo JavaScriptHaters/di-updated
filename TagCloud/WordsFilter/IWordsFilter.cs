@@ -2,5 +2,5 @@
 
 public interface IWordsFilter
 {
-    Dictionary<string, int> WordStatistic(List<string> words);
+    List<string> ApplyFilter(List<string> words);
 }
