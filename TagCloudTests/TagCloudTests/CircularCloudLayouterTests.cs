@@ -2,9 +2,9 @@ using FluentAssertions;
 using NUnit.Framework.Interfaces;
 using System.Drawing;
 using System.Drawing.Imaging;
+using TagCloud.CloudLayouter;
 using TagCloud.Extensions;
-using TagCloud.Visualizers;
-using TagsCloudVisualization.Layouters;
+using TagCloud.ImageGenerator;
 
 namespace TagCloudTests.TagCloudTests;
 
@@ -23,7 +23,7 @@ public class CircularCloudLayouterTests
         if (currentContext.Result.Outcome.Status != TestStatus.Failed)
             return;
 
-        var visualizer = new Visualizer();
+        var visualizer = new BitmapGenerator();
         var bitmap = visualizer.CreateBitmap(rectangles, GetLayoutSize());
         Directory.CreateDirectory(ImagesDirectory);
         bitmap.Save(Path.Combine(ImagesDirectory, currentContext.Test.Name + ".jpg"), ImageFormat.Jpeg);

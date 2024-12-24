@@ -2,9 +2,13 @@
 
 namespace TagCloud.ImageSaver;
 
-public class BitmapSaver(string imageName, string imageFormat) : IImageSaver
+public class BitmapFileSaver(string imageName, string imageFormat) : IImageSaver
 {
     private readonly List<string> supportedFormats = ["png", "jpg", "jpeg", "bmp"];
+
+    public BitmapFileSaver(FileSaveSettings settings)
+        : this(settings.ImageName, settings.ImageFormat)
+    { }
 
     public string Save(Bitmap image)
     {

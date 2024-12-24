@@ -1,8 +1,7 @@
 ﻿using System.Drawing;
-using TagCloud.CloudLayouter;
 using TagCloud.PointGenerators;
 
-namespace TagsCloudVisualization.Layouters;
+namespace TagCloud.CloudLayouter;
 
 public class CircularCloudLayouter : ICloudLayouter
 {
