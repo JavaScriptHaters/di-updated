@@ -1,16 +1,16 @@
 ﻿using WeCantSpell.Hunspell;
 
-namespace TagCloud.WordsFilter;
+namespace TagCloud.WordsFilter.Filters;
 
 public class BoringWordsFilter : IWordsFilter
 {
     private readonly WordList wordList = WordList.CreateFromFiles(
-        "./Dictionaries/enUS.dic",
-        "./Dictionaries/enUS.aff");
+        "./Dictionaries/English (American).dic", 
+        "./Dictionaries/English (American).aff");
 
     public List<string> ApplyFilter(List<string> words)
         => words.Where(w => !IsBoring(w)).ToList();
-
+    
     private WordEntryDetail[] CheckDetails(string word)
     {
         var details = wordList.CheckDetails(word);

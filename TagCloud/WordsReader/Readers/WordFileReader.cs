@@ -8,7 +8,7 @@ public class WordFileReader(string path) : IWordsReader
     public WordFileReader(WordFileReaderSettings settings)
         : this(settings.FilePath)
     { }
-
+    
     public List<string> ReadWords()
     {
         using var document = DocX.Load(path);

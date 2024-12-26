@@ -7,7 +7,7 @@ namespace TagCloud;
 
 public class CloudGenerator(
     IImageSaver saver,
-    IWordsReader reader,
+    IWordsReader reader, 
     BitmapGenerator imageGenerator,
     IEnumerable<IWordsFilter> filters)
 {
@@ -23,14 +23,14 @@ public class CloudGenerator(
             .GroupBy(w => w)
             .OrderByDescending(g => g.Count())
             .ToDictionary(g => g.Key, g => g.Count());
-
+        
         var maxFreq = freqDict.Values.Max();
         var tagsList = freqDict.Select(pair => ToWordTag(pair, maxFreq)).ToList();
-
-        return saver.Save(imageGenerator.CreateBitmap(tagsList));
+        
+        return saver.Save(imageGenerator.GenerateWindowsBitmap(tagsList));
     }
 
-    private static int TransformFreqToSize(int freq, int maxFreq)
+    private static int TransformFreqToSize(int freq, int maxFreq) 
         => (int)(MIN_FONT_SIZE + (float)freq / maxFreq * (MAX_FONT_SIZE - MIN_FONT_SIZE));
 
     private static WordTag ToWordTag(KeyValuePair<string, int> pair, int maxFreq)
